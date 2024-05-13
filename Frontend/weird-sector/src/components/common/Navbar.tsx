@@ -11,7 +11,7 @@ export default function Navbar({
   userName = '정진경',
 }: props) {
   return (
-    <header className='bg-white h-[88px] w-full border-b border-[#E1E1E1] fixed'>
+    <header className='bg-white h-[88px] w-full border-b border-[#E1E1E1] fixed z-50'>
       <div className='w-[1140px] h-full flex items-center justify-between m-auto px-4'>
         <nav className='flex items-center space-x-4'>
           <Link to='/' className='text-2xl font-bold text-main-orange'>
