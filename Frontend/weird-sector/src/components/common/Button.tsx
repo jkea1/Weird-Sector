@@ -30,7 +30,7 @@ export default function Button({
     black: 'bg-main-black text-white rounded hover:bg-hover-dark',
     white:
       'bg-main-white text-main-black rounded border-[1px] border-hover-light hover:bg-hover-light',
-    grey: 'bg-main-grey text-white rounded hover:bg-slate-300',
+    grey: 'bg-[#EEEEEE] text-main-black rounded hover:bg-gray-300',
     orange: 'bg-main-orange text-white rounded hover:bg-orange-600',
   }
 
