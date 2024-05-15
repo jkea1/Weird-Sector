@@ -1,15 +1,20 @@
 import { PropsWithChildren } from 'react'
 
 interface props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  size: 'xs' | 'sm' | 'md' | 'lg'
+  size: 'xs' | 'sm' | 'base' | 'md' | 'lg' | 'xl'
   color: 'black' | 'white' | 'orange' | 'grey'
   active?: boolean
 }
-// xs : 58 / 40
-// sm : 127 / 37
-// md : 127 / 48
-// lg : 383 / 52
+
+// xs: 'w-[58px] h-10', text-sm, weight-500 (삭제 모달)
+// sm: 'w-[127px] h-[37px]', text-sm, weight-400(font-normal) (boardTapSelector)
+// base: 'w-[127px] h-[48px]', text-lg, weight-500 (로그인, 회원가입 완료, board)
+// md: 'w-[142px] h-[48px]', text-lg (18px), weight-500 (회원가입)
+// lg: 'w-[162px] h-[48px]', text-lg, weight-500 (글 작성)
+// xl: 'w-[383px] h-[52px]', text-lg, weight-500 (로그인)
 // 댓글 버튼은 따로 빼기
+
+// 텍스트 사이즈 버튼 사이즈 별로 조절하기
 
 export default function Button({
   size = 'sm',
@@ -20,10 +25,12 @@ export default function Button({
   ...props
 }: PropsWithChildren<props>) {
   const sizes = {
-    xs: 'w-[58px] h-10',
-    sm: 'w-[127px] h-[37px]',
-    md: 'w-[127px] h-[48px]',
-    lg: 'w-[383px] h-[52px]',
+    xs: 'w-[58px] h-10 text-sm',
+    sm: 'w-[127px] h-[37px] text-sm font-normal',
+    base: 'w-[127px] h-[48px] text-lg',
+    md: 'w-[142px] h-[48px] text-lg',
+    lg: 'w-[162px] h-[48px] text-lg',
+    xl: 'w-[383px] h-[52px] text-lg',
   }
 
   const colors = {
