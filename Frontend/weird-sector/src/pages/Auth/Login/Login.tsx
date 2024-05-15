@@ -17,7 +17,7 @@ export default function Login() {
           placeholder='비밀번호 입력'
         />
       </div>
-      <Button color='black' size='lg' className='my-3'>
+      <Button color='black' size='xl' className='my-3'>
         로그인
       </Button>
       <div>

@@ -15,7 +15,7 @@ export default function SignUpComplete() {
         <h3 className='text-xl text-[#808080] font-normal'>축하드려요!</h3>
       </div>
       <Link to='/login'>
-        <Button color='black' size='md' className='mt-24'>
+        <Button color='black' size='base' className='mt-24'>
           로그인
         </Button>
       </Link>

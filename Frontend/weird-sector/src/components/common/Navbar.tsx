@@ -31,7 +31,7 @@ export default function Navbar({
             </span>
           ) : (
             <Link to='/login'>
-              <Button color='white' size='md'>
+              <Button color='white' size='base'>
                 로그인
               </Button>
             </Link>

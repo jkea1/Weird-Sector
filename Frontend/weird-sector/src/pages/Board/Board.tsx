@@ -126,10 +126,10 @@ export default function Board() {
         <div>
           <PostList postData={tmpData} className='mt-10' />
           <Pagination />
-          <Link to='/post/create'>
+          <Link to='/post/category/create'>
             <Button
               color='black'
-              size='md'
+              size='base'
               className='relative bottom-7 left-[1020px]'
             >
               글쓰기
