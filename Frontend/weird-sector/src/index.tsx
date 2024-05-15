@@ -10,7 +10,6 @@ import DashBoard from './pages/DashBoard/DashBoard'
 import NotFound from './pages/NotFound/NotFound'
 import Post from './pages/Post/Post'
 import PostCreate from './pages/PostCreate/PostCreate'
-import PostEdit from './pages/PostEdit/PostEdit'
 import './styles/index.css'
 
 const router = createBrowserRouter([
@@ -33,16 +32,16 @@ const router = createBrowserRouter([
         element: <SignUpComplete />,
       },
       {
-        path: '/post/:id',
+        path: '/board/:category',
+        element: <Board />,
+      },
+      {
+        path: '/post/:category/:id',
         element: <Post />,
       },
       {
-        path: '/post/create/:id',
+        path: '/post/:category/create',
         element: <PostCreate />,
-      },
-      {
-        path: '/post/edit/:id',
-        element: <PostEdit />,
       },
       {
         path: '/dashBoard/:category',
