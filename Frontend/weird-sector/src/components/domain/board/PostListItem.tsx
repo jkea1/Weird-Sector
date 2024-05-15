@@ -16,7 +16,7 @@ export default function PostListItem({
   viewCount,
 }: props) {
   return (
-    <Link to='/post/1'>
+    <Link to='/post/free/1'>
       <div className='flex items-center w-[1144px] h-[51px] border-b-[1px] border-b-[#E1E1E1] hover:bg-[#F9F9F9]'>
         <div className='w-[62px] text-center'>{no}</div>
         <div className='w-[602px] text-center'>{title}</div>
