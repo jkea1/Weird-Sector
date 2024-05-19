@@ -18,7 +18,7 @@ export async function getPost(req, res) {
   if (post) {
     res.status(200).json(post)
   } else {
-    res.status(404).json({ message: `Tweet id(${id}) not found` })
+    res.status(404).json({ message: `post id(${id}) not found` })
   }
 }
 
@@ -46,7 +46,7 @@ export async function updatePost(req, res) {
   if (post) {
     res.status(200).json(post)
   } else {
-    res.status(404).json({ message: `Tweet id(${id}) not found` })
+    res.status(404).json({ message: `post id(${id}) not found` })
   }
 }
 
