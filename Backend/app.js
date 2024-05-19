@@ -3,7 +3,8 @@ import express from 'express'
 import 'express-async-errors'
 import helmet from 'helmet'
 import morgan from 'morgan' // 디버깅
-import postsRouter from './router/posts'
+import authRouter from './router/auth.js'
+import postsRouter from './router/posts.js'
 
 const app = express()
 
@@ -15,6 +16,9 @@ app.use(morgan('tiny'))
 
 // 모든 posts와 관련된 요청은 postsRouter로 간다.
 app.use('/posts', postsRouter)
+
+// 모든 auth와 관련된 요청은 authRouter로 간다.
+app.use('/auth', authRouter)
 
 // Not found
 app.use((req, res, next) => {
