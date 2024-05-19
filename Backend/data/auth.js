@@ -1,11 +1,11 @@
 // abc1234: '$2b$12$r2WjIn2iDEV//ooNVk75T.3iFgXo6955T1FqyDTvxIUGSZIXSlByC',
-// token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE3MTYxMDUwOTgxNDIiLCJpYXQiOjE3MTYxMDYxMzksImV4cCI6MTcxNjI3ODkzOX0.gVUB63oKYL9qROqBuo10zcugQzESuKLZPeNn1GqLoHM
+// token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MTYxMzg1MTAsImV4cCI6MTcxNjMxMTMxMH0.B5lgnmiv6PDqM5AdFA1LJYMufbMZJcFaCKSc8jjQOJ0
 let users = [
   {
+    userId: '1716105098142',
     nickname: 'ea',
     password: '$2b$12$r2WjIn2iDEV//ooNVk75T.3iFgXo6955T1FqyDTvxIUGSZIXSlByC',
     email: 'ea@gmail.com',
-    id: '1716105098142',
   },
 ]
 
@@ -15,15 +15,15 @@ export async function findByEmail(email) {
   return users.find((user) => user.email === email)
 }
 
-export async function findById(id) {
-  return users.find((user) => user.id === id)
+export async function findById(userId) {
+  return users.find((user) => user.userId === userId)
 }
 
 export async function createUser(user) {
-  const created = { ...user, id: Date.now().toString() }
+  const created = { ...user, userId: new Date().toString() }
   users.push(created)
 
-  // console.log('새로운 회원가입자 확인', users)
+  console.log('새로운 회원가입자 확인', users)
 
-  return created.id
+  return created.userId
 }

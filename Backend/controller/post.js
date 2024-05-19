@@ -23,15 +23,15 @@ export async function getPost(req, res) {
 }
 
 export async function createPost(req, res) {
-  const { category, title, text, nickname, file, hashtag } = req.body
+  const { category, title, text, file, hashtag } = req.body
 
   const post = await postRepository.create(
     category,
     title,
     text,
-    nickname,
     file,
-    hashtag
+    hashtag,
+    req.userId
   )
 
   res.status(201).json(post)
