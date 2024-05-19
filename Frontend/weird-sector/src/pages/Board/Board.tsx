@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query'
 import { Link } from 'react-router-dom'
 import Button from '../../components/common/Button'
 import BoardTabSelector from '../../components/domain/board/BoardTabSelector'
@@ -113,6 +114,16 @@ const tmpData = [
 ]
 
 export default function Board() {
+  const { data: posts } = useQuery({
+    queryKey: ['posts', 'free'],
+    queryFn: () =>
+      fetch('http://localhost:8080/posts?category=free').then((res) =>
+        res.json()
+      ),
+  })
+
+  console.log('확인', posts)
+
   return (
     <div className='my-0 h-[1069px] flex flex-col justify-center items-center relative top-[88px]'>
       <div>
@@ -126,7 +137,7 @@ export default function Board() {
         <div>
           <PostList postData={tmpData} className='mt-10' />
           <Pagination />
-          <Link to='/post/category/create'>
+          <Link to='/post/free/create'>
             <Button
               color='black'
               size='base'
