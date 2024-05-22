@@ -78,7 +78,7 @@ export default function Board() {
         <div>
           <PostList posts={posts} className='mt-10' />
           <Pagination />
-          <Link to='/post/free/create'>
+          <Link to={`/post/${category}/create`}>
             <Button
               color='black'
               size='base'
