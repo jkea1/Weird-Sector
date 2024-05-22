@@ -14,8 +14,6 @@ import { getPost } from '../../service/posts'
 export default function Post() {
   const { id } = useParams()
 
-  console.log(id)
-
   const { data: post } = useQuery({
     queryKey: ['post', `${id}`],
     queryFn: () => getPost(id),
@@ -46,12 +44,11 @@ export default function Post() {
         </section>
         <section className='my-4'>
           <div className='flex space-x-3'>
-            {post &&
-              post?.hashtag?.map((hashtag: string) => (
-                <Fragment key={`${id}${hashtag}`}>
-                  <HashTag>{hashtag}</HashTag>
-                </Fragment>
-              ))}
+            {post?.hashtag?.map((hashtag: string) => (
+              <Fragment key={`${id}${hashtag}`}>
+                <HashTag>{hashtag}</HashTag>
+              </Fragment>
+            ))}
           </div>
         </section>
         <section className='flex gap-x-4 py-[32px] mb-2'>

@@ -112,6 +112,7 @@ export default function PostCreate() {
           <input
             className='w-[984px] h-[55px] border-[1px] rounded border-[#E1E1E1] px-5 py-4'
             type='text'
+            placeholder='# 을 붙여주세요!  ex) #해시 #태그 #게시글 #작성'
             onChange={handleHashtag}
           />
         </div>
