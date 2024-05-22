@@ -1,6 +1,7 @@
 import * as userRepository from '../data/auth.js'
-// db 대신할 메모리 상의 임시 데이터
+import { extractHashtags } from '../util/index.js'
 
+// db 대신할 메모리 상의 임시 데이터
 let posts = [
   {
     id: '1',
@@ -91,13 +92,15 @@ export async function create(
   comment,
   userId
 ) {
+  let hashtagArray = extractHashtags(hashtag)
+
   const post = {
     id: Date.now().toString(),
     category,
     title,
     text,
     file,
-    hashtag,
+    hashtag: hashtagArray,
     viewCount: 0,
     createdAt: new Date(),
     comment,
@@ -105,6 +108,8 @@ export async function create(
   }
 
   posts = [post, ...posts]
+
+  console.log('posts 저장소에서 create 된거 확인', post)
   return getById(post.id)
 }
 
