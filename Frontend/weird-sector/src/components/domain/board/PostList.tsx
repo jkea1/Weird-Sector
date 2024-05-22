@@ -1,32 +1,29 @@
+import { Fragment } from 'react/jsx-runtime'
+import { Post } from '../../../types/model'
 import PostListHeader from './PostListHeader'
 import PostListItem from './PostListItem'
 
-type postDataProps = {
-  no: string
-  title: string
-  userName: string
-  date: string
-  viewCount: string
-}
-
 type props = {
-  postData: postDataProps[]
+  posts: Post[]
   className: string
 }
 
-export default function PostList({ postData, className = '' }: props) {
+export default function PostList({ posts, className = '' }: props) {
   return (
     <div className={`${className}`}>
       <PostListHeader />
-      {postData.map((post) => {
+      {posts?.map((post, idx) => {
         return (
-          <PostListItem
-            no={post.no}
-            title={post.title}
-            userName={post.userName}
-            date={post.date}
-            viewCount={post.viewCount}
-          />
+          <Fragment key={post.id}>
+            <PostListItem
+              id={post.id}
+              no={String(idx)}
+              title={post.title}
+              nickname={post.nickname}
+              createdAt={post.createdAt}
+              viewCount={post.viewCount}
+            />
+          </Fragment>
         )
       })}
     </div>
