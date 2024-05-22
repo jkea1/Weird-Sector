@@ -1,11 +1,19 @@
+import { Fragment } from 'react/jsx-runtime'
+import { Comment as commentI } from '../../../types/model'
 import Comment from './Comment'
 
-export default function CommentList() {
+type props = {
+  comments: commentI[]
+}
+
+export default function CommentList({ comments }: props) {
   return (
     <>
-      <Comment />
-      <Comment />
-      <Comment />
+      {comments?.map((comment, idx) => (
+        <Fragment key={idx}>
+          <Comment comment={comment} />
+        </Fragment>
+      ))}
     </>
   )
 }
