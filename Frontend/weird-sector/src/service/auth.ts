@@ -1,4 +1,4 @@
-import { saveToken } from '../db/token'
+import { getToken, saveToken } from '../db/token'
 import httpClient from '../network/http'
 
 type signupProps = {
@@ -36,9 +36,17 @@ export const login = async ({ email, password }: loginProps): Promise<any> => {
     password,
   })
 
-  console.log('res', response)
-
   saveToken(response.data.token)
+
+  return response
+}
+
+export const getMeData = async (): Promise<any> => {
+  const token = getToken()
+
+  const response = await httpClient.get(`/auth/me`, {
+    headers: { Authorization: `Bearer ${token}` },
+  })
 
   return response
 }
