@@ -3,13 +3,12 @@ import Button from './Button'
 
 type props = {
   isLoggedIn: boolean
-  userName: string
+  nickname: string
 }
 
-export default function Navbar({
-  isLoggedIn = true,
-  userName = '정진경',
-}: props) {
+export default function Navbar({ isLoggedIn, nickname }: props) {
+  console.log(nickname)
+
   return (
     <header className='bg-white h-[88px] w-full border-b border-[#E1E1E1] fixed z-50'>
       <div className='w-[1140px] h-full flex items-center justify-between m-auto px-4'>
@@ -27,7 +26,7 @@ export default function Navbar({
         <div>
           {isLoggedIn ? (
             <span className='text-gray-800 text-xl font-bold'>
-              {userName} 님
+              {nickname} 님
             </span>
           ) : (
             <Link to='/login'>
