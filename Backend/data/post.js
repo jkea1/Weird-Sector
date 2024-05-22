@@ -80,13 +80,19 @@ export async function getById(id) {
 
   const { nickname } = await userRepository.findById(found.userId)
   return { ...found, nickname }
-
-  // return posts.find((post) => post.id === id)
 }
 
-export async function create(category, title, text, file, hashtag, userId) {
+export async function create(
+  category,
+  title,
+  text,
+  file,
+  hashtag,
+  comment,
+  userId
+) {
   const post = {
-    id: new Date().toString(),
+    id: Date.now().toString(),
     category,
     title,
     text,
@@ -94,6 +100,7 @@ export async function create(category, title, text, file, hashtag, userId) {
     hashtag,
     viewCount: 0,
     createdAt: new Date(),
+    comment,
     userId,
   }
 

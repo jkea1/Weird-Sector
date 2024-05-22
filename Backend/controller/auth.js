@@ -18,6 +18,7 @@ export async function signup(req, res) {
   }
 
   const hashed = await bcrypt.hash(password, bcryptSaltRounds)
+
   const userId = await userRepository.createUser({
     nickname,
     password: hashed,
@@ -25,11 +26,14 @@ export async function signup(req, res) {
   })
 
   const token = createJwtToken(userId)
-  res.status(201).json({ token, nickname })
+  res.status(201).json({ data: { token, nickname } })
 }
 
 export async function login(req, res) {
   const { email, password } = req.body
+
+  console.log('로그인 컨트롤러', email, password)
+
   const user = await userRepository.findByEmail(email)
 
   if (!user) {
@@ -44,7 +48,7 @@ export async function login(req, res) {
 
   const token = createJwtToken(user.userId)
 
-  res.status(200).json({ token, email })
+  res.status(200).json({ data: { token, email } })
 }
 
 function createJwtToken(userId) {

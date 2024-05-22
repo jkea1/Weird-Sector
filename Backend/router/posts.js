@@ -10,7 +10,7 @@ const router = express.Router()
 router.get('/', postController.getPosts)
 
 // GET /posts/:id
-router.get('/:id', isAuth, postController.getPost)
+router.get('/:id', postController.getPost)
 
 // POST /posts
 router.post('/', isAuth, postController.createPost)

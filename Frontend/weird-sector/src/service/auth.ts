@@ -38,7 +38,7 @@ export const login = async ({ email, password }: loginProps): Promise<any> => {
 
   console.log('res', response)
 
-  saveToken(response.data)
+  saveToken(response.data.token)
 
   return response
 }

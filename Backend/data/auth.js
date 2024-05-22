@@ -20,7 +20,7 @@ export async function findById(userId) {
 }
 
 export async function createUser(user) {
-  const created = { ...user, userId: new Date().toString() }
+  const created = { ...user, userId: Date.now().toString() }
   users.push(created)
 
   console.log('새로운 회원가입자 확인', users)
