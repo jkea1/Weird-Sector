@@ -7,7 +7,14 @@ type props = {
 }
 
 export default function Navbar({ isLoggedIn, nickname }: props) {
-  console.log(nickname)
+  const handleDashboardLinkClick = (
+    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+  ) => {
+    if (!isLoggedIn) {
+      event.preventDefault()
+      alert('로그인이 필요합니다.')
+    }
+  }
 
   return (
     <header className='bg-white h-[88px] w-full border-b border-[#E1E1E1] fixed z-50'>
@@ -18,7 +25,11 @@ export default function Navbar({ isLoggedIn, nickname }: props) {
             <Link to='/board/free' className='px-3 py-2 hover:text-[#d6d6d6]'>
               게시판
             </Link>
-            <Link to='/dashBoard' className='px-3 py-2 hover:text-[#d6d6d6]'>
+            <Link
+              to='/dashBoard'
+              className='px-3 py-2 hover:text-[#d6d6d6]'
+              onClick={handleDashboardLinkClick}
+            >
               대시보드
             </Link>
           </div>
