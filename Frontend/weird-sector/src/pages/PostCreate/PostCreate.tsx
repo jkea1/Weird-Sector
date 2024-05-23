@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import Button from '../../components/common/Button'
 import useForm from '../../hooks/useForm'
@@ -33,12 +33,12 @@ export default function PostCreate() {
     }
 
     if (!title) {
-      newErrors.title = '제목을 입력해주세요'
+      newErrors.title = '제목을 입력해주세요!'
       valid = false
     }
 
     if (!text) {
-      newErrors.text = '내용을 입력해주세요'
+      newErrors.text = '내용을 입력해주세요!'
       valid = false
     }
 
@@ -70,6 +70,13 @@ export default function PostCreate() {
     }
   }
 
+  const fileInputRef = useRef<HTMLInputElement>(null)
+  const handleButtonClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click()
+    }
+  }
+
   return (
     <div className='my-0 h-[921px] flex flex-col justify-center items-center relative top-[88px]'>
       <h1 className='text-[#040404] text-[32px] font-bold mt-16 mb-10'>
@@ -82,29 +89,31 @@ export default function PostCreate() {
         <div className='flex items-center gap-x-2'>
           <h2 className='text-xl font-bold w-[140px]'>제목</h2>
           <input
-            className='w-[984px] h-[55px] border-[1px] rounded border-[#E1E1E1] px-5 py-4'
+            className='w-[984px] h-[55px] border-[1px] rounded border-[#E1E1E1] px-5 py-4 placeholder-main-orange'
             type='text'
             onChange={handleTitle}
+            placeholder={errors.title && errors.title}
           />
-          {errors.title && (
-            <p className='text-red-500 text-sm'>{errors.title}</p>
-          )}
         </div>
         <div className='flex gap-x-2'>
           <h2 className='text-xl font-bold w-[140px] pt-3'>내용</h2>
-          <input
-            className='w-[984px] h-[320px] border-[1px] rounded border-[#E1E1E1] px-5 py-4'
-            type='text'
+          <textarea
+            className='w-[984px] h-[320px] border-[1px] rounded border-[#E1E1E1] px-5 py-4 placeholder-main-orange'
             onChange={handleText}
+            placeholder={errors.text && errors.text}
           />
-          {errors.text && <p className='text-red-500 text-sm'>{errors.text}</p>}
         </div>
         <div className='flex items-center gap-x-2'>
           <h2 className='text-xl font-bold w-[140px]'>파일 첨부</h2>
           <input
-            className='w-[984px] h-[55px] border-[1px] rounded border-[#E1E1E1] px-5 py-4'
-            type='text'
+            ref={fileInputRef}
+            className='hidden'
+            type='file'
             onChange={handleFile}
+          />
+          <button
+            className='w-[984px] h-[55px] border-[1px] rounded border-[#E1E1E1] px-5 py-4 bg-white cursor-pointer'
+            onClick={handleButtonClick}
           />
         </div>
         <div className='flex items-center gap-x-2'>
