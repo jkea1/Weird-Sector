@@ -6,10 +6,7 @@ import CommentButton from '../../components/domain/post/CommentButton'
 import CommentList from '../../components/domain/post/CommentList'
 import HashTag from '../../components/domain/post/HashTag'
 import { getPost } from '../../service/posts'
-
-// const tmpPostDetail = {
-
-// }
+import { timeAgo } from '../../utils/timeAgo'
 
 export default function Post() {
   const { id } = useParams()
@@ -19,7 +16,7 @@ export default function Post() {
     queryFn: () => getPost(id),
   })
 
-  console.log('data', post)
+  let pastTime = timeAgo(post?.createdAt)
 
   return (
     <div className='my-0 py-[100px] w-[1144px] mx-auto flex flex-col justify-center relative top-[88px]'>
@@ -30,7 +27,7 @@ export default function Post() {
         </div>
         <div className='flex align-center gap-x-2 text-base h-[27px] p-1'>
           <div>{post?.nickname}</div>
-          <div className='border-x-[1px] border-[#E1E1E1] px-2'>{`${post?.createdAt}분 전`}</div>
+          <div className='border-x-[1px] border-[#E1E1E1] px-2'>{`${pastTime}`}</div>
           <div>{`조회수 ${post?.viewCount}`}</div>
         </div>
       </header>
