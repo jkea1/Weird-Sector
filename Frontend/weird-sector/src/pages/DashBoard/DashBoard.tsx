@@ -1,12 +1,19 @@
+import { useQuery } from '@tanstack/react-query'
 import DashBoardHeader from '../../components/domain/dashBoard/DashBoardHeader'
+import { getMeData } from '../../service/auth'
 import LineChart from './Charts/LineChart'
-import DashboardLayout from './DashBoardLayout'
+import DashBoardLayout from './DashBoardLayout'
 
 export default function DashBoard() {
+  const { data: me } = useQuery({
+    queryKey: ['me'],
+    queryFn: () => getMeData(),
+  })
+
   return (
-    <DashboardLayout>
-      <div className='w-full'>
-        <DashBoardHeader />
+    <DashBoardLayout>
+      <div className='w-full h-full'>
+        <DashBoardHeader me={me?.nickname} />
         <main>
           <div className='w-[850px] h-[470px] border-[1px] border-[#E1E1E1] m-6'>
             <h2 className='text-base font-bold ml-11 py-5'>
@@ -22,6 +29,6 @@ export default function DashBoard() {
           </div>
         </main>
       </div>
-    </DashboardLayout>
+    </DashBoardLayout>
   )
 }

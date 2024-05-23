@@ -4,6 +4,7 @@ import Button from '../../components/common/Button'
 import BoardTabSelector from '../../components/domain/board/BoardTabSelector'
 import Pagination from '../../components/domain/board/Pagination'
 import PostList from '../../components/domain/board/PostList'
+import { getMeData } from '../../service/auth'
 import { getPosts } from '../../service/posts'
 
 // const postsData = [
@@ -65,6 +66,20 @@ export default function Board() {
     queryFn: () => getPosts(category),
   })
 
+  const { data: me } = useQuery({
+    queryKey: ['me'],
+    queryFn: () => getMeData(),
+  })
+
+  const handlePostCreateButtonClick = (
+    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+  ) => {
+    if (!me) {
+      event.preventDefault()
+      alert('로그인이 필요합니다.')
+    }
+  }
+
   return (
     <div className='my-0 h-[1069px] flex flex-col justify-center items-center relative top-[88px]'>
       <div>
@@ -78,7 +93,10 @@ export default function Board() {
         <div>
           <PostList posts={posts} className='mt-10' />
           <Pagination />
-          <Link to={`/post/${category}/create`}>
+          <Link
+            to={`/post/${category}/create`}
+            onClick={handlePostCreateButtonClick}
+          >
             <Button
               color='black'
               size='base'

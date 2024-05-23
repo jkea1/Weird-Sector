@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom'
+import { Navigate, createBrowserRouter } from 'react-router-dom'
 import App from '../App'
 import Login from '../pages/Auth/Login/Login'
 import SignUp from '../pages/Auth/SignUp/SignUp'
@@ -15,7 +15,7 @@ const router = createBrowserRouter([
     element: <App />,
     errorElement: <NotFound />,
     children: [
-      { index: true, element: <Board /> },
+      { index: true, element: <Navigate to='/board/free' /> },
       {
         path: '/login',
         element: <Login />,
