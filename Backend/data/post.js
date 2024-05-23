@@ -60,14 +60,12 @@ export async function getAll() {
       return { ...post, nickname }
     })
   )
-  // return posts
 }
 
 export async function getAllByCategory(category) {
   return getAll().then((posts) =>
     posts.filter((post) => post.category === category)
   )
-  // return posts.filter((post) => post.category === category)
 }
 
 export async function getById(id) {

@@ -10,8 +10,6 @@ export default function App() {
     queryFn: () => getMeData(),
   })
 
-  console.log('me', me)
-
   return (
     <div>
       <Navbar isLoggedIn={me ? true : false} nickname={me?.nickname} />
