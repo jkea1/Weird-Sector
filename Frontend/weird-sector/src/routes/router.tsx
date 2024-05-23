@@ -40,11 +40,11 @@ const router = createBrowserRouter([
         path: '/post/:category/create',
         element: <PostCreate />,
       },
-      {
-        path: '/dashBoard',
-        element: <DashBoard />,
-      },
     ],
+  },
+  {
+    path: '/dashBoard',
+    element: <DashBoard />,
   },
 ])
 

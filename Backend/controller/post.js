@@ -42,6 +42,7 @@ export async function updatePost(req, res) {
   const id = req.params.id
 
   const { title, text, hashtag, file } = req.body
+
   const post = await postRepository.update(id, title, text, hashtag, file)
 
   if (post) {
