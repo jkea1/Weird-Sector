@@ -36,7 +36,9 @@ export default function Post() {
       </header>
       <main>
         <section className='mb-4'>
-          <p className='text-xl'>{post?.text}</p>
+          <p className='min-h-[420px] w-[1140px] text-xl break-all'>
+            {post?.text}
+          </p>
         </section>
         <section className='flex py-5 gap-x-4 '>
           <h2 className='text-xl font-normal text-main-orange'>첨부된 파일</h2>
