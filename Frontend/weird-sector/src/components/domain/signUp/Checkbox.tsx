@@ -4,16 +4,22 @@ import { FaCheck } from 'react-icons/fa'
 type Props = {
   initialChecked?: boolean
   className?: string
+  onChange?: (checked: boolean) => void
 }
 
 export default function Checkbox({
   initialChecked = false,
   className = '',
+  onChange,
 }: Props) {
   const [isChecked, setIsChecked] = useState(initialChecked)
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setIsChecked(event.target.checked)
+
+    if (onChange) {
+      onChange(event.target.checked)
+    }
   }
 
   return (
