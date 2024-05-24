@@ -3,6 +3,7 @@ import express from 'express'
 import 'express-async-errors'
 import helmet from 'helmet'
 import morgan from 'morgan' // 디버깅
+import { config } from './config.js'
 import authRouter from './router/auth.js'
 import postsRouter from './router/posts.js'
 
@@ -31,4 +32,4 @@ app.use((error, req, res, next) => {
   res.sendStatus(500)
 })
 
-app.listen(8080)
+app.listen(config.host.port)
