@@ -71,9 +71,10 @@ export default function PostCreate() {
   }
 
   const fileInputRef = useRef<HTMLInputElement>(null)
-  const handleButtonClick = () => {
+
+  const handleFileButtonClick = () => {
     if (fileInputRef.current) {
-      fileInputRef.current.click()
+      fileInputRef.current?.click()
     }
   }
 
@@ -111,10 +112,12 @@ export default function PostCreate() {
             type='file'
             onChange={handleFile}
           />
-          <button
-            className='w-[984px] h-[55px] border-[1px] rounded border-[#E1E1E1] px-5 py-4 bg-white cursor-pointer'
-            onClick={handleButtonClick}
-          />
+          <div
+            className='w-[984px] h-[55px] border-[1px] rounded border-[#E1E1E1] px-5 py-4 bg-white cursor-pointer flex justify-start'
+            onClick={handleFileButtonClick}
+          >
+            {file}
+          </div>
         </div>
         <div className='flex items-center gap-x-2'>
           <h2 className='text-xl font-bold w-[140px]'>해시태그</h2>
