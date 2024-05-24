@@ -91,10 +91,10 @@ export default function Login() {
       </form>
       <div>
         <ul className='flex text-sm'>
-          <li className='text-[#808080] border-r-[1.2px] border-[#808080] px-8 my-1'>
+          <li className='text-[#808080] border-r-[1.2px] border-[#808080] px-8 my-1 cursor-not-allowed'>
             아이디 찾기
           </li>
-          <li className='text-[#808080] border-r-[1.2px] border-[#808080] px-8 my-1'>
+          <li className='text-[#808080] border-r-[1.2px] border-[#808080] px-8 my-1 cursor-not-allowed'>
             비밀번호 찾기
           </li>
           <li className='px-8 my-1'>
