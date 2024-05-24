@@ -1,18 +1,44 @@
-import { Link } from 'react-router-dom'
+import { useState } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { logout } from '../../service/auth'
 import Button from './Button'
 
 type props = {
   isLoggedIn: boolean
-  nickname: string
+  nickname: string | null
 }
 
 export default function Navbar({ isLoggedIn, nickname }: props) {
+  const [hovered, setHovered] = useState(false)
+
+  const navigate = useNavigate()
+
+  const location = useLocation()
+  const pathName = location.pathname.split('/').pop()
+
+  if (pathName === 'login' || pathName === 'signUp') {
+    isLoggedIn = false
+  }
+
   const handleDashboardLinkClick = (
     event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
   ) => {
     if (!isLoggedIn) {
       event.preventDefault()
       alert('로그인이 필요합니다.')
+    }
+  }
+
+  const handleLogoutClick = () => {
+    try {
+      logout()
+      isLoggedIn = false
+
+      alert('로그아웃 되었습니다. 로그인 페이지로 이동합니다.')
+
+      navigate('/login')
+    } catch (err) {
+      console.log(err)
     }
   }
 
@@ -36,9 +62,14 @@ export default function Navbar({ isLoggedIn, nickname }: props) {
         </nav>
         <div>
           {isLoggedIn ? (
-            <span className='text-gray-800 text-xl font-bold'>
-              {nickname} 님
-            </span>
+            <button
+              className='text-gray-800 text-xl font-bold'
+              onMouseEnter={() => setHovered(true)}
+              onMouseLeave={() => setHovered(false)}
+              onClick={handleLogoutClick}
+            >
+              {hovered ? 'Logout' : `${nickname} 님`}
+            </button>
           ) : (
             <Link to='/login'>
               <Button color='white' size='base'>

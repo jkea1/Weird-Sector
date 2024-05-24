@@ -1,4 +1,4 @@
-import { getToken, saveToken } from '../db/token'
+import { clearToken, getToken, saveToken } from '../db/token'
 import httpClient from '../network/http'
 
 type signupProps = {
@@ -49,4 +49,8 @@ export const getMeData = async (): Promise<any> => {
   })
 
   return response
+}
+
+export const logout = () => {
+  clearToken()
 }
