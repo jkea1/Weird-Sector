@@ -17,6 +17,7 @@ export default function SignUp() {
     password: '',
     confirmPassword: '',
     nickname: '',
+    agree: '',
   })
 
   const validate = () => {
@@ -26,10 +27,11 @@ export default function SignUp() {
       password: '',
       confirmPassword: '',
       nickname: '',
+      agree: '',
     }
 
     if (!email) {
-      newErrors.email = '이메일을 입력해주세요'
+      newErrors.email = '이메일을 입력해주세요.'
       valid = false
     }
 
@@ -38,18 +40,23 @@ export default function SignUp() {
 
     if (!password || !passwordRegex.test(password)) {
       newErrors.password =
-        '비밀번호는 8자 이상, 영문자, 숫자, 특수기호 중 2가지 조합이어야 합니다'
+        '비밀번호는 8자 이상, 영문자, 숫자, 특수기호 중 2가지 조합이어야 합니다.'
 
       valid = false
     }
 
     if (password !== confirmPassword) {
-      newErrors.confirmPassword = '비밀번호가 일치하지 않습니다'
+      newErrors.confirmPassword = '비밀번호가 일치하지 않습니다.'
       valid = false
     }
 
     if (!nickname) {
-      newErrors.nickname = '닉네임을 입력해주세요'
+      newErrors.nickname = '닉네임을 입력해주세요.'
+      valid = false
+    }
+
+    if (!agree) {
+      newErrors.agree = '개인정보 처리 방침 및 데이터 활용에 동의해주세요.'
       valid = false
     }
 
@@ -66,7 +73,6 @@ export default function SignUp() {
       navigate('/signUp/complete')
     },
     onError: (err) => {
-      // console.log(err)
       alert(err)
     },
   })
@@ -95,7 +101,9 @@ export default function SignUp() {
             onChange={handleEmail}
           />
           {errors.email && (
-            <p className='text-red-500 text-sm'>{errors.email}</p>
+            <p className='text-red-500 text-sm relative top-2'>
+              {errors.email}
+            </p>
           )}
         </div>
         <div>
@@ -128,10 +136,12 @@ export default function SignUp() {
             type='text'
             onChange={handleNickname}
           />
+          {errors.nickname && (
+            <p className='text-red-500 text-sm relative top-2'>
+              {errors.nickname}
+            </p>
+          )}
         </div>
-        {errors.nickname && (
-          <p className='text-red-500 text-sm'>{errors.nickname}</p>
-        )}
         <div className='w-[384px] h-[75px] bg-[#F9F9F9] flex justify-center items-center text-base gap-x-2 rounded-lg my-2'>
           <Checkbox
             initialChecked={agree}
@@ -140,6 +150,11 @@ export default function SignUp() {
           <h3>개인정보 처리방침 / 데이터 활용 동의</h3>
           <h3 className='text-[#808080]'>(필수)</h3>
         </div>
+        {errors.agree && (
+          <p className='text-red-500 text-sm relative bottom-6'>
+            {errors.agree}
+          </p>
+        )}
         <div className='w-[100%] flex justify-center'>
           <Button color='black' size='md' className='mt-12'>
             회원가입
