@@ -41,9 +41,16 @@ export async function createPost(req, res) {
 export async function updatePost(req, res) {
   const id = req.params.id
 
-  const { title, text, hashtag, file } = req.body
+  const { title, text, hashtag, file, comment } = req.body
 
-  const post = await postRepository.update(id, title, text, hashtag, file)
+  const post = await postRepository.update(
+    id,
+    title,
+    text,
+    hashtag,
+    file,
+    comment
+  )
 
   if (post) {
     res.status(200).json(post)

@@ -1,84 +1,26 @@
+import MongoDb from 'mongodb'
 import * as userRepository from '../data/auth.js'
+import { getPosts } from '../database/database.js'
 import { extractHashtags } from '../util/index.js'
 
-// db 대신할 메모리 상의 임시 데이터
-let posts = [
-  {
-    id: '1',
-    category: 'free',
-    title: '새로운 게시물 생성',
-    text: 'new message :)',
-    nickname: 'ea',
-    createdAt: new Date().toString(),
-    userId: '1716105098142',
-    viewCount: '20344',
-    file: 'https://cdn.expcloud.co/life/uploads/2020/04/27135731/Fee-gentry-hed-shot-1.jpg',
-    hashtag: ['새로운', '게시물', '생성'],
-    comment: [
-      {
-        nickname: '진경',
-        commentText: '댓글을 생성하다.',
-        createdAt: new Date().toString(),
-      },
-      {
-        nickname: '에릭',
-        commentText: '에릭이 댓글을 생성하다.',
-        createdAt: new Date().toString(),
-      },
-    ],
-  },
-  {
-    id: '2',
-    category: 'question',
-    title: '새로운 질문 게시물 생성',
-    text: 'new question :)',
-    nickname: '질문왕',
-    createdAt: new Date().toString(),
-    userId: '1716105098142',
-    viewCount: '2104',
-    file: 'https://cdn.expcloud.co/life/uploads/2020/04/27135731/Fee-gentry-hed-shot-1.jpg',
-    hashtag: ['새로운', '질문', '생성'],
-    comment: [
-      {
-        nickname: '답변이',
-        commentText: '답변을 생성하다.',
-        createdAt: new Date().toString(),
-      },
-      {
-        nickname: '유저',
-        commentText: '유저가 댓글을 생성하다.',
-        createdAt: Date.now().toString(),
-      },
-    ],
-  },
-]
+const ObjectId = MongoDb.ObjectId
 
 export async function getAll() {
-  return Promise.all(
-    posts.map(async (post) => {
-      const { nickname } = await userRepository.findById(post.userId)
-      return { ...post, nickname }
-    })
-  )
+  return getPosts().find().sort({ createdAt: -1 }).toArray().then(mapPosts)
 }
 
 export async function getAllByCategory(category) {
-  return getAll().then((posts) =>
-    posts.filter((post) => post.category === category)
-  )
+  return getPosts()
+    .find({ category })
+    .sort({ createdAt: -1 })
+    .toArray()
+    .then(mapPosts)
 }
 
 export async function getById(id) {
-  const found = posts.find((post) => post.id === id)
-
-  console.log('found', found)
-
-  if (!found) {
-    return null
-  }
-
-  const { nickname } = await userRepository.findById(found.userId)
-  return { ...found, nickname }
+  return getPosts()
+    .findOne({ _id: new ObjectId(id) })
+    .then(mapOptionalPost)
 }
 
 export async function create(
@@ -92,8 +34,9 @@ export async function create(
 ) {
   let hashtagArray = extractHashtags(hashtag)
 
+  const { nickname, email } = await userRepository.findById(userId)
+
   const post = {
-    id: Date.now().toString(),
     category,
     title,
     text,
@@ -103,27 +46,34 @@ export async function create(
     createdAt: new Date(),
     comment,
     userId,
+    nickname: nickname,
+    email: email,
   }
 
-  posts = [post, ...posts]
-
-  console.log('posts 저장소에서 create 된거 확인', post)
-  return getById(post.id)
+  return getPosts()
+    .insertOne(post)
+    .then((data) => mapOptionalPost({ ...post, _id: data.insertedId }))
 }
 
 export async function update(id, title, text, hashtag, file) {
-  const post = posts.find((post) => post.id === id)
-
-  if (post) {
-    post.title = title
-    post.text = text
-    post.hashtag = hashtag
-    post.file = file
-  }
-
-  return getById(post.id)
+  return getPosts()
+    .findOneAndUpdate(
+      { _id: new ObjectId(id) },
+      { $set: { title, text, hashtag, file } },
+      { returnDocument: 'after' }
+    )
+    .then((result) => result.value)
+    .then(mapOptionalPost)
 }
 
 export async function remove(id) {
-  posts = posts.filter((post) => post.id !== id)
+  return getPosts().deleteOne({ _id: new ObjectId(id) })
+}
+
+function mapOptionalPost(post) {
+  return post ? { ...post, id: post._id.toString() } : post
+}
+
+function mapPosts(posts) {
+  return posts.map(mapOptionalPost)
 }

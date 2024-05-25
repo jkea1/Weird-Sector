@@ -3,7 +3,6 @@ import {} from 'express-async-errors'
 import jwt from 'jsonwebtoken'
 import * as userRepository from '../data/auth.js'
 
-// 나중에 따로 보관하기
 const jwtSecretKey = 'F2dN7x8HVzBWaQuEEDnhsvHXRWqAR63z'
 const jwtExpiresInDays = '2d'
 const bcryptSaltRounds = 12
@@ -31,8 +30,6 @@ export async function signup(req, res) {
 
 export async function login(req, res) {
   const { email, password } = req.body
-
-  console.log('로그인 컨트롤러', email, password)
 
   const user = await userRepository.findByEmail(email)
 
