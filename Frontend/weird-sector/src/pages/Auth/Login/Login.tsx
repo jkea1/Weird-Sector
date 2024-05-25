@@ -44,7 +44,7 @@ export default function Login() {
       navigate('/board/free')
     },
     onError: (err) => {
-      // console.log(err)
+      console.log(err)
       alert(err)
     },
   })

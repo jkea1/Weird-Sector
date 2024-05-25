@@ -28,8 +28,6 @@ export const getPosts = async (category?: string): Promise<any> => {
 export const getPost = async (id?: string): Promise<any> => {
   const response = await httpClient.get(`/posts/${id}`)
 
-  console.log('res', response)
-
   return response
 }
 

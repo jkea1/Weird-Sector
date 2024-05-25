@@ -10,8 +10,6 @@ export async function findByEmail(email) {
 }
 
 export async function findById(userId) {
-  console.log('userId 확인', userId)
-
   return getUsers()
     .findOne({ _id: new MongoDb.ObjectId(userId) })
     .then((data) => {
