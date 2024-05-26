@@ -6,6 +6,10 @@
 
 <img src="./img/Screen Recording 2024-05-27 at 4.20.50 AM.gif"/>
 
+### Rest APIs 디자인 및 결과물 동영상
+
+[📚노션 링크](https://repeated-paprika-d0d.notion.site/219d8105e62243fe87db6454753653c4?pvs=4)
+
 ### ⭐️ 프론트엔드 배포 링크
 
 https://weird-sector.vercel.app/
