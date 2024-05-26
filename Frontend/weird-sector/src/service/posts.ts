@@ -40,17 +40,6 @@ export const createPost = async ({
 }: postProp): Promise<any> => {
   const token = getToken()
 
-  // const formData = new FormData()
-  // formData.append('category', category)
-  // formData.append('title', title)
-  // formData.append('text', text)
-  // if (file) {
-  //   formData.append('file', file)
-  // }
-  // if (hashtag) {
-  //   formData.append('hashtag', hashtag)
-  // }
-
   const response = await httpClient.post(
     `/posts`,
     { category, title, text, file, hashtag },
@@ -63,21 +52,3 @@ export const createPost = async ({
 
   return response
 }
-
-// const deletePost = async (postId: string): Promise<any> => {
-//   const config: AxiosRequestConfig = {
-//     method: 'DELETE',
-//     headers: getHeaders(),
-//   }
-
-//   return http.delete(`/tweets/${postId}`, config)
-// }
-
-// const updatePost = async (postId: string, text: string): Promise<any> => {
-//   const config: AxiosRequestConfig = {
-//     method: 'PUT',
-//     headers: getHeaders(),
-//   }
-
-//   return http.put(`/posts/${postId}`, { text }, config)
-// }
