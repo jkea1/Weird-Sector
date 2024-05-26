@@ -79,16 +79,25 @@ export default function Board() {
       alert('로그인이 필요합니다.')
     }
   }
+  let categoryName
+
+  if (category === 'free') {
+    categoryName = '자유'
+  } else if (category === 'question') {
+    categoryName = '질문'
+  } else if (category === 'etc') {
+    categoryName = '기타'
+  }
 
   return (
     <div className='my-0 h-[1069px] flex flex-col justify-center items-center relative top-[88px]'>
-      <div>
+      <div className='fixed top-[180px]'>
         <h3 className='text-main-orange text-[20px] font-bold text-center'>
           board
         </h3>
-        <h1 className='text-[32px] font-bold my-3'>{`${category}게시판`}</h1>
+        <h1 className='text-[32px] font-bold my-3'>{`${categoryName}게시판`}</h1>
       </div>
-      <div>
+      <div className='fixed top-[300px]'>
         <BoardTabSelector category={category} />
         <div>
           <PostList posts={posts} className='mt-10' />
