@@ -4,7 +4,7 @@
 
 ### ⭐️ 시연 영상
 
-<img src="./img/Screen Recording 2024-05-27 at 4.20.50 AM.gif"/>
+<img src="./img/Screen-Recording-2024-05-27-at-4.20.50 AM-_online-video-cutter.com_.gif"/>
 
 ### ⭐️ Rest APIs 디자인 및 결과물 동영상
 
