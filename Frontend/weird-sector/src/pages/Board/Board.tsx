@@ -40,7 +40,7 @@ export default function Board() {
   }
 
   return (
-    <div className='my-0 h-[1069px] flex flex-col justify-start items-center relative top-[260px]'>
+    <div className='my-0 min-h-[1300px] flex flex-col justify-start items-center relative top-[260px]'>
       <div>
         <h3 className='text-main-orange text-[20px] font-bold text-center'>
           board
@@ -50,20 +50,22 @@ export default function Board() {
       <div>
         <BoardTabSelector category={category} />
         <div>
-          <PostList posts={posts} className='mt-10' />
-          <Pagination />
-          <Link
-            to={`/post/${category}/create`}
-            onClick={handlePostCreateButtonClick}
-          >
-            <Button
-              color='black'
-              size='base'
-              className='relative bottom-7 left-[1020px]'
+          <div className='h-[600px]'>
+            <PostList posts={posts} className='mt-10' />
+            <Pagination />
+            <Link
+              to={`/post/${category}/create`}
+              onClick={handlePostCreateButtonClick}
             >
-              글쓰기
-            </Button>
-          </Link>
+              <Button
+                color='black'
+                size='base'
+                className='relative bottom-7 left-[1020px]'
+              >
+                글쓰기
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

@@ -12,20 +12,23 @@ export default function PostList({ posts, className = '' }: props) {
   return (
     <div className={`${className}`}>
       <PostListHeader />
-      {posts?.map((post, idx) => {
-        return (
-          <Fragment key={post.id}>
-            <PostListItem
-              id={post.id}
-              no={String(idx)}
-              title={post.title}
-              nickname={post.nickname}
-              createdAt={post.createdAt}
-              viewCount={post.viewCount}
-            />
-          </Fragment>
-        )
-      })}
+
+      <div>
+        {posts?.map((post, idx) => {
+          return (
+            <Fragment key={post.id}>
+              <PostListItem
+                id={post.id}
+                no={String(idx)}
+                title={post.title}
+                nickname={post.nickname}
+                createdAt={post.createdAt}
+                viewCount={post.viewCount}
+              />
+            </Fragment>
+          )
+        })}
+      </div>
     </div>
   )
 }
