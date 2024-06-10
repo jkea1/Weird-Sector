@@ -62,7 +62,7 @@ export default function Login() {
   }
 
   return (
-    <div className='my-0 h-[711px] flex flex-col justify-center items-center relative top-[88px]'>
+    <div className='my-0 h-[1111px] flex flex-col justify-center items-center relative top-[88px]'>
       <h1 className='text-[#040404] text-[32px] font-bold mb-4'>로그인</h1>
       <form onSubmit={handleLogin}>
         <div className='flex flex-col gap-y-2'>
