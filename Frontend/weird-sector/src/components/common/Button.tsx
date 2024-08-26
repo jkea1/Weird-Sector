@@ -12,9 +12,6 @@ interface props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 // md: 'w-[142px] h-[48px]', text-lg (18px), weight-500 (회원가입)
 // lg: 'w-[162px] h-[48px]', text-lg, weight-500 (글 작성)
 // xl: 'w-[383px] h-[52px]', text-lg, weight-500 (로그인)
-// 댓글 버튼은 따로 빼기
-
-// 텍스트 사이즈 버튼 사이즈 별로 조절하기
 
 export default function Button({
   size = 'sm',
