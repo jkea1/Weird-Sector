@@ -1,3 +1,10 @@
+## 리팩토링 계획 (2025.01 ~)
+- Redux 적용
+- DB 테이블 수정
+- D3.js 데이터 연결
+- 세부 기능 수정
+- 로그인 방법 추가
+
 ## (주)위어드섹터
 
 ### DashBoard Mini Intern Project : React(또는 Next.js), REST API를 활용한 게시판 / 대시보드 구현
